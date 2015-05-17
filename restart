@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#docker pull atlassian/stash
+
+docker stop stash
+docker rm stash
+
+docker run -v /data/stash/server.xml:/opt/atlassian/stash/conf/server.xml:ro -v /data/stash:/var/atlassian/application-data/stash -v /etc/localtime:/etc/localtime:ro --name="stash" -d -p 7999:7999 atlassian/stash
+#docker run -v /data/stash:/var/atlassian/application-data/stash -v /etc/localtime:/etc/localtime:ro --name="stash" -d -p 7999:7999 atlassian/stash
+
+./nginx/restart
+

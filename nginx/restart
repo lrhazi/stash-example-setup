@@ -1,0 +1,7 @@
+#!/bin/bash
+
+docker stop stash-proxy
+docker rm stash-proxy
+
+docker run --link stash:stash -v /etc/localtime:/etc/localtime:ro --name="stash-proxy" -d -p 443:443 ncssm/stash-proxy
+
